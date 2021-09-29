@@ -1,11 +1,11 @@
 <template>
-  <div
+  <span
     @dragover="handleOnDragOver"
     @dragleave="onDragLeave"
     @drop="onDrop"
   >
     <slot />
-  </div>
+  </span>
 </template>
 
 <script>

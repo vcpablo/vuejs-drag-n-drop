@@ -6,12 +6,12 @@
       </span> 
     </DraggableItem>
     <hr />
-    <DroppableItem v-bind="{ onDragOver, onDrop }">
-      <div :class="droppableItemClass">
+    <DroppableItem v-bind="{ onDragOver, onDragLeave, onDrop }">
+      <span :class="droppableItemClass">
         <span class="circle" v-for="ball in selectedBalls" :key="ball.id">
           {{ ball.id }}
         </span>
-      </div>
+      </span>
     </DroppableItem>
   </div>
 </template>
@@ -42,6 +42,8 @@ export default {
        isDroppableItemActive.value = true
      }
 
+     const onDragLeave = () => isDroppableItemActive.value = false
+
      const onDrop = event => {
         const ball = JSON.parse(event.dataTransfer.getData('value'))
         selectedBalls.value = [
@@ -51,7 +53,7 @@ export default {
         isDroppableItemActive.value = false
      }
 
-     return { availableBalls, selectedBalls, droppableItemClass, onDragOver, onDrop }
+     return { availableBalls, selectedBalls, droppableItemClass, onDragOver, onDragLeave, onDrop }
   }
 }
 </script>
@@ -69,6 +71,7 @@ export default {
 }
 
 .square {
+  display: inline-block;
   width: 250px;
   height: 250px;
   border: 1px dashed black;
