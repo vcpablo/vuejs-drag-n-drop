@@ -1,13 +1,7 @@
 <template>
   <span
-    :transfer-data="transferData"
     draggable="true"
     @dragstart="handleDragStart"
-    @drag="onDrag"
-    @dragenter="onDragEnter"
-    @dragover="onDragOver"
-    @dragleave="onDragLeave"
-    @dragend="onDragEnd"
   >
     <slot />
   </span>
@@ -16,19 +10,10 @@
 <script>
 export default {
   name: 'DraggableItem',
-  props: [
-    'transferData',
-    'onDragStart',
-    'onDrag',
-    'onDragEnter',
-    'onDragOver',
-    'onDragLeave',
-    'onDragEnd'
-  ],
+  props: ['transferData'],
   setup(props)  {
     const handleDragStart = event => {
-      event.dataTransfer.setData('Text', JSON.stringify(props.transferData))
-      props.onDragStart && props.onDragStart(event)
+      event.dataTransfer.setData('value', JSON.stringify(props.transferData))
     }
 
     return { handleDragStart }

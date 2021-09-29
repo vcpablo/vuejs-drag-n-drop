@@ -63,8 +63,7 @@ export default {
 
     const filteredUsers = computed(() => differenceBy('id', props.users, selectedUsers.value))
 
-    const onDragOver = event => {
-      event.preventDefault()
+    const onDragOver = () => {
       isDroppableItemActive.value = true
     }
 

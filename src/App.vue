@@ -1,17 +1,20 @@
 <template>
   <div class="container mt-3">
     <DraggableUsersSelect v-model="selectedUsers" :users="users"/>
+    <DraggableBalls />
   </div>
 </template>
 
 <script>
 import { ref } from 'vue'
 import DraggableUsersSelect from '@/components/DraggableUsersSelect'
+import DraggableBalls from '@/components/DraggableBalls'
 
 export default {
   name: 'App',
   components: {
-    DraggableUsersSelect
+    DraggableUsersSelect,
+    DraggableBalls
   },
   setup() {
     const users = [

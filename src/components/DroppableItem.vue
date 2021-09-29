@@ -1,7 +1,6 @@
 <template>
   <div
-    @dragenter="onDragEnter"
-    @dragover="onDragOver"
+    @dragover="handleOnDragOver"
     @dragleave="onDragLeave"
     @drop="onDrop"
   >
@@ -13,10 +12,17 @@
 export default {
   name: 'DroppableItem',
   props: [
-    'onDragEnter',
     'onDragOver',
     'onDragLeave',
     'onDrop'
-  ]
+  ],
+  setup(props) {
+    const handleOnDragOver = event => {
+      event.preventDefault()
+      props.onDragOver && props.onDragOver(event)
+    }
+
+    return { handleOnDragOver }
+  }
 }
 </script>
